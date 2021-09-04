@@ -5,7 +5,12 @@ const ValidationSchema = Yup.object().shape({
   titulo: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Required'),
+    .required('Required')
+    .test(
+      'is-Pop',
+      'Não é permitido o uso do termo "pop"',
+      (value => !/pop/.test(value))
+    ),
   autor: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
